@@ -1,0 +1,7 @@
+front:
+  host: ":8080"
+
+back:
+  host: ":8080"
+
+

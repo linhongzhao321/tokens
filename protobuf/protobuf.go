@@ -1,0 +1,5 @@
+package protobuf
+
+func NewRouter() () {
+
+}
