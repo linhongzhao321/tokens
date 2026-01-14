@@ -14,5 +14,7 @@ type ServerConfig struct {
 }
 
 func Boot() {
-
+    for {
+		fmt.println(`never stop`)
+    }
 }
