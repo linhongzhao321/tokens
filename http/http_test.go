@@ -17,23 +17,22 @@ func BaseAssert(t *testing.T, method string, url string, reqBody io.Reader) (bod
 
 	router.ServeHTTP(w, req)
 	assert.Equal(t, 200, w.Code)
-	assert.Greater(t, 0, w.Body.Len())
+	assert.Greater(t, w.Body.Len(), 0)
 	err = json.Unmarshal(w.Body.Bytes(), &body)
 	assert.Nil(t, err)
 	assert.NotNil(t, body)
 	assert.NotNil(t, body["code"])
-	assert.IsType(t, 0, body["msg"])
 	assert.NotNil(t, body["msg"])
 	assert.IsType(t, "", body["msg"])
 	assert.NotNil(t, body["data"])
-	assert.IsType(t, []interface{}{}, body["data"])
+	assert.IsType(t, map[string]interface{}{}, body["data"])
 	return
 }
 
 func TestGetPing(t *testing.T) {
 	body := BaseAssert(t, "GET", "/ping", nil)
-	assert.Equal(t, PING.code, body["code"])
-	assert.Equal(t, PING.msg, body["code"])
+	assert.Equal(t, float64(PING.code), body["code"])
+	assert.Equal(t, PING.msg, body["msg"])
 }
 
 func BenchmarkGetPing(b *testing.B) {

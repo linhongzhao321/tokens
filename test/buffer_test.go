@@ -78,10 +78,10 @@ func TestApply(t *testing.T) {
 func TestReadCh(t *testing.T) {
 	ctx, _ := context.WithTimeout(context.Background(), time.Microsecond)
 	select {
-	case <-ctx.Done():
-		t.Error("timeout")
 	case token := <-buf.ApplyCh():
 		t.Log(token)
+	case <-ctx.Done():
+		t.Error("timeout")
 	}
 	return
 }

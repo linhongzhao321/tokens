@@ -22,7 +22,7 @@ type CharSet struct {
 }
 
 func NewCharSet(bs string, minBytes uint8, incrBytes uint8) *CharSet {
-	if len(bs) == 0 {
+	if len(bs) == 0 && (minBytes > 0 || incrBytes > 0) {
 		panic("bs should not empty!")
 	}
 
